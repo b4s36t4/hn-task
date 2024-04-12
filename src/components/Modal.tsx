@@ -30,7 +30,7 @@ export const Modal = ({
           <CircleXIcon size={24} role="button" onClick={onClose} />
         </div>
         <div className="my-6 border" />
-        <div className="overflow-scroll h-full">{children}</div>
+        <div className="overflow-scroll h-[90%]">{children}</div>
       </div>
     </div>
   );

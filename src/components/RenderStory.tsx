@@ -57,7 +57,7 @@ export const RenderStory = ({ story }: { story: INewsItem }) => {
     []
   );
   return (
-    <div>
+    <>
       <div className="flex items-center space-x-2">
         <p className="text-base underline text-gray-500">{story.author}</p>
         <p className="font-bold text-sm">{story.points} Points</p>
@@ -71,6 +71,6 @@ export const RenderStory = ({ story }: { story: INewsItem }) => {
           story.children.sort((a, b) => a.created_at_i - b.created_at_i) ?? []
         )}
       </div>
-    </div>
+    </>
   );
 };

@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# Tech-Stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- React
+- React-Router-dom
+- Vite
+- Zustand
+- React-Query (tanstack)
+- Ark-UI (Not useful though)
+- Tailwindcss
+- Axios
+- pnpm
 
-Currently, two official plugins are available:
+## State-Management
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Used React-Query and Zustand for managing the state.
 
-## Expanding the ESLint configuration
+React-Query used to call the APIs and cache the and provide the data through the hooks.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Zustand is being used to track the search string to call the APIs based on string provided.
 
-- Configure the top-level `parserOptions` property like this:
+## Route-Anatomy.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Base Route
+  - Home
+    - Item
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Base Route - is the root page which contains the header and outlet to render the child pages
+Home - Contains all the the stories
+Item: Renders all the comments from a selected story.
+
+## Testing
+
+Used react-testing-library and vitest to write basic test-cases.
+
+> Used the test data for search results & items api instead of calling the APIs.
+
+## How-To Run
+
+This project is using `pnpm` as the package manager
