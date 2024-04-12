@@ -1,10 +1,35 @@
 import { searchStore } from "@/state/search";
 import clsx from "clsx";
+import { useCallback, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const Header = ({ className }: IHeaderProps) => {
   const searchValue = searchStore((state) => state.searchValue);
 
   const onChangeSearch = searchStore((state) => state.updateSearchValue);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const query = searchParams.get("query");
+    if (!query) {
+      return;
+    }
+
+    onChangeSearch(query);
+  }, [onChangeSearch, searchParams]);
+
+  const onChange = useCallback(
+    (value: string) => {
+      onChangeSearch(value);
+
+      const newParams = new URLSearchParams();
+      newParams.append("query", value);
+
+      setSearchParams(newParams);
+    },
+    [onChangeSearch, setSearchParams]
+  );
 
   return (
     <ul
@@ -15,8 +40,8 @@ export const Header = ({ className }: IHeaderProps) => {
         <input
           placeholder="Search"
           value={searchValue}
-          onChange={(e) => onChangeSearch(e.target.value)}
-          className="py-2 px-2 text-base w-80 dark:bg-gray-100 placeholder:text-black text-black outline-none"
+          onChange={(e) => onChange(e.target.value)}
+          className="py-2 border rounded-md px-5 dark:border-none text-base w-80 dark:bg-gray-100 placeholder:text-black text-black outline-none"
         />
       </li>
     </ul>
