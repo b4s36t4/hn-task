@@ -34,6 +34,12 @@ Used react-testing-library and vitest to write basic test-cases.
 
 > Used the test data for search results & items api instead of calling the APIs.
 
+`pnpm test` to run the test-cases and see how many test-cases are being successful
+
 ## How-To Run
 
 This project is using `pnpm` as the package manager
+
+1. Install packages with `pnpm i`
+2. Run the dev server with `pnpm dev`
+3. Build the application with `pnpm build`
