@@ -17,6 +17,7 @@ export const Modal = ({
           block: show,
         }
       )}
+      data-testid="Modal"
     >
       <div
         className={clsx(

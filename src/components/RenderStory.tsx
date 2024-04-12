@@ -11,7 +11,7 @@ const RenderComment = ({
   className?: string;
 }) => {
   return (
-    <div className={clsx("mt-2 mb-4", className)}>
+    <div data-testid="comment" className={clsx("mt-2 mb-4", className)}>
       <div>
         <p
           className="underline text-base text-gray-500 dark:text-gray-300"
@@ -39,13 +39,15 @@ export const RenderStory = ({ story }: { story: INewsItem }) => {
         _children.push(
           <RenderComment
             item={comment}
-            key={comment.id}
+            key={`${comment.id}-${comment.parent_id}`}
             className={clsx({ "ml-6 text-sm": addMargin })}
           />
         );
         if (comment.children.length > 0) {
           _children.push(
-            <div className="ml-6">{renderItems(comment.children, true)}</div>
+            <div className="ml-6" key={comment.id}>
+              {renderItems(comment.children, true)}
+            </div>
           );
         }
       });

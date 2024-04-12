@@ -23,6 +23,7 @@ export const NewsItem = ({ item }: { item: IHit }) => {
       className="my-2 w-full border rounded shadow-sm p-4"
       role="button"
       onClick={onClickNewsItem}
+      data-id="news-item"
     >
       <div className="flex">
         <p>{item.title}</p>
