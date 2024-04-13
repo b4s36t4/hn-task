@@ -2,7 +2,7 @@ import { Loader } from "@/components/Loader";
 import { Modal } from "@/components/Modal";
 import { RenderStory } from "@/components/RenderStory";
 import { useGetNewsDetails } from "@/query/hooks/useGetNewsDetails";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ItemDetails = () => {
@@ -13,15 +13,18 @@ const ItemDetails = () => {
     navigate(-1);
   }, [navigate]);
 
-  const { selectedItem } = location.state as { selectedItem: IHit };
+  const { selectedItem } =
+    location.state ?? ({ selectedItem: {} } as { selectedItem: IHit });
 
   const { data, isLoading, isError } = useGetNewsDetails(
-    selectedItem.objectID as string
+    selectedItem?.objectID as string
   );
 
-  if (!selectedItem.objectID) {
-    onClose();
-  }
+  useEffect(() => {
+    if (!selectedItem?.objectID) {
+      onClose();
+    }
+  }, [onClose, selectedItem]);
 
   return (
     <Modal
